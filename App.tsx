@@ -10,7 +10,7 @@ export default function App() {
     name: "Spaghetti Carbonara",
     description:
       "A classic Italian pasta dish made with eggs, cheese, pancetta, and pepper.",
-    videoUrl: "https://www.youtube.com/embed/3AAdKl1UYZs",
+    videoUrl: "https://www.youtube.com/watch?v=3AAdKl1UYZs&t=1s",
     relatedRecipes: ["Penne Alfredo", "Chicken Parmesan", "Linguine Pesto"]
   };
 
