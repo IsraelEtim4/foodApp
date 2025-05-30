@@ -1,65 +1,141 @@
-import React from "react";
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import React, { useState } from "react";
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
+import { Card } from "react-native-paper";
+// import { WebView } from "react-native-webview";
 
-export default function App() {
+export default function RecipeApp() {
   const [showRecipe, setShowRecipe] = useState(false);
 
   const recipe = {
-    name: "Spaghetti Carbonara",
-    description:
-      "A classic Italian pasta dish made with eggs, cheese, pancetta, and pepper.",
-    videoUrl: "https://www.youtube.com/watch?v=3AAdKl1UYZs&t=1s",
-    relatedRecipes: ["Penne Alfredo", "Chicken Parmesan", "Linguine Pesto"]
+    name: 'Jollof Rice',
+    description: 'Jollof, or jollof rice, is a rice dish from West Africa. The dish is typically made with long-grain rice, tomatoes, chilis, onions, spices, and sometimes other vegetables and/or meat in a single pot, although its ingredients and preparation methods vary across different regions.',
+    videoUrl: 'https://youtube.com/watch?v=9n3Cx7DYuyQ',
+    relatedRecipes: ['Fried Rice', 'Basmati Fried Rice', 'Coconut Rice']
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
+    <View style={styles.container}>
       {!showRecipe ? (
-        <Card className="p-6 w-full max-w-md text-center">
-          <CardContent>
-            <h1 className="text-2xl font-bold mb-4">Welcome to Recipe World</h1>
-            <Button
-              className="bg-blue-500 text-white p-2 rounded-xl"
-              onClick={() => setShowRecipe(true)}
-              aria-label="Recipe for You"
+        <Card style={styles.card}>
+          <View style={styles.cardContent}>
+            <Text style={styles.title}>Welcome to Recipe World</Text>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => setShowRecipe(true)}
+              accessibilityLabel="Recipe for You"
             >
-              Recipe for You
-            </Button>
-          </CardContent>
+              <Text style={styles.buttonText}>Recipe for You</Text>
+            </TouchableOpacity>
+          </View>
         </Card>
       ) : (
-        <div className="w-full max-w-3xl p-4">
-          <Card className="mb-6">
-            <CardContent>
-              <h2 className="text-3xl font-bold mb-2">{recipe.name}</h2>
-              <p className="text-gray-700 mb-4">{recipe.description}</p>
-              <div className="relative overflow-hidden rounded-xl aspect-video">
-                <iframe
-                  className="w-full h-full"
-                  src={recipe.videoUrl}
-                  title="Cooking Tutorial"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              </div>
-            </CardContent>
+        <ScrollView style={styles.recipeContainer}>
+          <Card style={styles.recipeCard}>
+            <View style={styles.cardContent}>
+              <Text style={styles.recipeTitle}>{recipe.name}</Text>
+              <Text style={styles.recipeDescription}>{recipe.description}</Text>
+              <View style={styles.videoContainer}>
+                {/* <WebView
+                  source={{ uri: recipe.videoUrl }}
+                  style={styles.video}
+                  allowsFullscreenVideo
+                /> */}
+              </View>
+            </View>
           </Card>
 
-          <Card>
-            <CardContent>
-              <h3 className="text-xl font-semibold mb-4">Related Recipes</h3>
-              <ul className="list-disc pl-5 text-gray-700">
-                {recipe.relatedRecipes.map((relatedRecipe, index) => (
-                  <li key={index}>{relatedRecipe}</li>
-                ))}
-              </ul>
-            </CardContent>
+          <Card style={styles.relatedCard}>
+            <View style={styles.cardContent}>
+              <Text style={styles.relatedTitle}>Related Recipes</Text>
+              {recipe.relatedRecipes.map((relatedRecipe, index) => (
+                <Text key={index} style={styles.relatedRecipe}>
+                  {relatedRecipe}
+                </Text>
+              ))}
+            </View>
           </Card>
-        </div>
+        </ScrollView>
       )}
-    </div>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#f8f8f8",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 16,
+  },
+  card: {
+    width: "100%",
+    padding: 16,
+    backgroundColor: "#fff",
+    borderRadius: 8,
+    elevation: 4,
+  },
+  cardContent: {
+    alignItems: "center",
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 16,
+  },
+  button: {
+    backgroundColor: "#007bff",
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  recipeContainer: {
+    width: "100%",
+  },
+  recipeCard: {
+    marginBottom: 16,
+    padding: 16,
+    backgroundColor: "#fff",
+    borderRadius: 8,
+    elevation: 4,
+  },
+  recipeTitle: {
+    fontSize: 22,
+    fontWeight: "bold",
+    marginBottom: 8,
+  },
+  recipeDescription: {
+    fontSize: 16,
+    color: "#555",
+    marginBottom: 16,
+  },
+  videoContainer: {
+    width: "100%",
+    aspectRatio: 16 / 9,
+    borderRadius: 8,
+    overflow: "hidden",
+  },
+  video: {
+    flex: 1,
+  },
+  relatedCard: {
+    padding: 16,
+    backgroundColor: "#fff",
+    borderRadius: 8,
+    elevation: 4,
+  },
+  relatedTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 8,
+  },
+  relatedRecipe: {
+    fontSize: 16,
+    color: "#555",
+  },
+});
