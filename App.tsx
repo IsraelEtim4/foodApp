@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
 import { Card } from "react-native-paper";
@@ -7,11 +8,10 @@ export default function RecipeApp() {
   const [showRecipe, setShowRecipe] = useState(false);
 
   const recipe = {
-    name: "Spaghetti Carbonara",
-    description:
-      "A classic Italian pasta dish made with eggs, cheese, pancetta, and pepper.",
-    videoUrl: "https://www.youtube.com/watch?v=3AAdKl1UYZs&t=1s",
-    relatedRecipes: ["Penne Alfredo", "Chicken Parmesan", "Linguine Pesto"]
+    name: 'Jollof Rice',
+    description: 'Jollof, or jollof rice, is a rice dish from West Africa. The dish is typically made with long-grain rice, tomatoes, chilis, onions, spices, and sometimes other vegetables and/or meat in a single pot, although its ingredients and preparation methods vary across different regions.',
+    videoUrl: 'https://youtube.com/watch?v=9n3Cx7DYuyQ',
+    relatedRecipes: ['Fried Rice', 'Basmati Fried Rice', 'Coconut Rice']
   };
 
   return (
