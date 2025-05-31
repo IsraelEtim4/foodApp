@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from "react-nati
 import { Card } from "react-native-paper";
 // import { WebView } from "react-native-webview";
 
-export default function RecipeApp() {
+export default function App() {
   const [showRecipe, setShowRecipe] = useState(false);
 
   const recipe = {
