@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
 import { Card } from "react-native-paper";
-// import { WebView } from "react-native-webview";
+import { WebView } from "react-native-webview";
 
 export default function App() {
   const [showRecipe, setShowRecipe] = useState(false);
@@ -36,11 +36,11 @@ export default function App() {
               <Text style={styles.recipeTitle}>{recipe.name}</Text>
               <Text style={styles.recipeDescription}>{recipe.description}</Text>
               <View style={styles.videoContainer}>
-                {/* <WebView
+                <WebView
                   source={{ uri: recipe.videoUrl }}
                   style={styles.video}
                   allowsFullscreenVideo
-                /> */}
+                />
               </View>
             </View>
           </Card>
